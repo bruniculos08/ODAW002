@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8">
+<font face = sans-serif>
+
+<head>
+    <title>
+        Cadastro
+    </title>
+
+    <link rel="icon" type="image/x-icon" href="https://openmoji.org/data/color/svg/25C9-FE0F-200D-1F534.svg">
+</head>
+
+<html>
+    <body style="position: absolute; left: 30%;">
+        <div style="position: relative; background-color: white; width: 1520px; height: 800px;">    
+
+            <div style="position: absolute; border-style: solid; padding: 50px; top: 10px; background-color: rgb(43, 179, 111)">
+                <h2>
+                    Insira seus dados para realizar o cadastro
+                </h2>
+                
+            </div>
+
+            <div style="position: absolute; top: 220px; background-color: white">
+
+                <form action="page.js" method="POST">
+                    <label for="primeiroNome"> Nome: </label>
+                    <input type="text" id="primeiroNome" name="primeiroNome">
+                    &nbsp;
+                    <!-- &nbsp; gera um espaço na linha por isso serve para separar itens da mesma altura da página-->
+                    <label for="ultimoNome"> Sobrenome: </label>
+                    <input type="text" id="ultimoNome" name="ultimoNome">
+                    
+                    <br><br>
+                    <label for="email"> E-mail: </label>
+                    <input type="text" id="email" name="email">
+
+                    <br><br>
+                    <label for="senha"> Senha: </label>
+                    <input type="password" id="senha" name="senha">
+                    &nbsp;
+                    <label for="senha"> Confirmar senha: </label>
+                    <input type="password" id="senha" name="senha">
+
+                    <br><br>
+                    <input type="checkbox" id="termos_e_condicoes" name="termos_e_condicoes">
+                    <label for="termos_e_condicoes"> Eu concordo com os
+                        <a href="" target="_blank" rel="external" hreflang="pt" type="text/html"> 
+                            termos e condições.
+                        </a>
+                    </label>
+                    
+                    <br>
+                    <br>
+                    <button type="reset"> Limpar formulário </button>
+                    <button type="submit"> Finalizar </button>
+                </form>
+
+            </div>
+            
+            
+    
+        </div>    
+    </body>
+</html>
