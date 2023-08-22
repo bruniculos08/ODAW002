@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8">
+<font face = sans-serif>
+
+<head>
+    <title>
+        Login
+    </title>
+
+    <link rel="icon" type="image/x-icon" href="https://openmoji.org/data/color/svg/25C9-FE0F-200D-1F534.svg">
+</head>
+
+<html>
+    <body style="position: absolute; left: 20%; bottom: 10%; background-color: rgb(189, 255, 141);">
+        <div style="position: relative; background-color: rgb(189, 255, 141); width: 100px; height: 500px;">    
+
+            <svg width="400" height="180">
+                <g>
+                <rect x="10" y="20" rx="20" ry="20" width="350" height="150"
+                    style="fill:rgb(83, 97, 73);stroke:black;stroke-width: 5;opacity:0.8" />
+                        <text x="100" y="110" font-family="Verdana" font-size="55" fill="grey" 
+                        style="stroke:black; font-family:'Courier New', Courier, monospace">
+                        Login
+                        </text>
+                </g>
+            Sorry, your browser does not support inline SVG.
+            </svg>
+
+            <div style="position: absolute; top: 220px; background-color: rgb(189, 255, 141); font-family:'Courier New', Courier, monospace;">
+
+                <form action="page.js" method="POST">
+                    
+                    <label for="email"> E-mail: </label>
+                    <input type="text" id="email" name="email">
+
+                    <br><br>
+                    <label for="senha"> Senha: </label>
+                    <input type="password" id="senha" name="senha">
+                    &nbsp;
+
+                    <br><br>
+                    <input type="checkbox" id="Lembrar senha" name="Lembrar_senha">
+                    <label for="Lembrar_senha"> Lembrar senha</label>
+                    
+                    <br>
+                    <br>
+                    <button type="reset"> Limpar </button>
+                    <button type="submit"> Login </button>
+                </form>
+
+            </div>
+            
+            
+    
+        </div>    
+    </body>
+</html>
