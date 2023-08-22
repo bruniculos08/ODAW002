@@ -12,10 +12,35 @@
 </head>
 
 <html>
-    <body style="position: absolute; left: 12%; bottom: 10%; background-color: rgb(189, 255, 141);">
-        <div style="position: relative; background-color: rgb(189, 255, 141); width: 700px; height: 500px;">    
+    <style>
+        input[type=email], select{
+            width: 100%;
+            padding: 12px, 20px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type=password], select{
+            width: 100%;
+            padding: 12px, 20px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        section{
+            border-radius: 12px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
 
-            <svg width="650" height="180">
+    </style>
+
+    <body style="position: absolute; left: 12%; bottom: 25%; background-color: rgb(189, 255, 141);">
+        <!-- <div style="position: relative; background-color: rgb(189, 255, 141); width: 700px; height: 500px;">     -->
+
+            <!-- <svg width="650" height="180">
                 <g>
                 <rect x="10" y="20" rx="20" ry="20" width="600" height="150"
                     style="fill:rgb(83, 97, 73);stroke:black;stroke-width: 5;opacity:0.8" />
@@ -29,31 +54,39 @@
                         </text>
                 </g>
             Sorry, your browser does not support inline SVG.
-            </svg>
+            </svg> -->
 
-            <div style="position: absolute; top: 220px; background-color: rgb(189, 255, 141); 
-            font-family:'Courier New', Courier, monospace;">
-
-                <form action="page.js" method="POST">
+            <!-- <div style="position: absolute; top: 220px; background-color: rgb(189, 255, 141); 
+            font-family:'Courier New', Courier, monospace;"> -->
+            
+            <section>
+                <form action="page.js" method="POST" style="font-family: 'Courier New', Courier, monospace;">
                     <label for="primeiroNome"> Nome: </label>
                     <input type="text" id="primeiroNome" name="primeiroNome">
+    
                     &nbsp;
                     <!-- &nbsp; gera um espaço na linha por isso serve para separar itens da mesma altura da página-->
+    
                     <label for="ultimoNome"> Sobrenome: </label>
                     <input type="text" id="ultimoNome" name="ultimoNome">
                     
                     <br><br>
+    
                     <label for="email"> E-mail: </label>
-                    <input type="text" id="email" name="email">
-
+                    <input type="email" id="email" name="email">
+    
                     <br><br>
+    
                     <label for="senha"> Senha: </label>
                     <input type="password" id="senha" name="senha">
+    
                     &nbsp;
+                    
                     <label for="senha"> Confirmar senha: </label>
                     <input type="password" id="senha" name="senha">
-
+    
                     <br><br>
+    
                     <input type="checkbox" id="termos_e_condicoes" name="termos_e_condicoes">
                     <label for="termos_e_condicoes"> Eu concordo com os
                         <a href="" target="_blank" rel="external" hreflang="pt" type="text/html"> 
@@ -66,11 +99,11 @@
                     <button type="reset"> Limpar formulário </button>
                     <button type="submit"> Finalizar </button>
                 </form>
+            </section>
 
-            </div>
-            
-            
+
+            <!-- </div> -->
     
-        </div>    
+        <!-- </div>     -->
     </body>
 </html>
