@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 
     <style>
         /* Define o tamanho da box de todos os itens como "border-box"? */
@@ -14,23 +15,22 @@
             box-sizing: border-box;
         }
 
-        .bgimg {
-            background-image: url('/w3images/onepage_restaurant.jpg');
-            min-height: 100%;
-            background-position: center;
-            background-size: cover;
+        h1,
+        h5 {
+            font-family: 'Courier New', Courier, monospace;
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            /* font-family: "Inconsolata", sans-serif; */
-            
+            font-family: 'Courier New', Courier, monospace;
+            background-image: url('https://www.hashmicro.com/blog/wp-content/uploads/2022/01/Saluran-Distribusi14.png');
+            background-position: center;
+            background-size: cover;
             /* Adicionado para forçar a tag article a ocupar o meio da página inteira,...
             ... isto é, forçar o footer abaixo */
             display: flex;
             flex-direction: column;
-            min-height: 100vh; margin:0;
-            background-color: #f1f1f1;
+            min-height: 100vh;
+            margin: 0;
         }
 
         /* Adicionado para forçar a tag article a ocupar o meio da página inteira,...
@@ -66,9 +66,7 @@
             clear: both;
         }
 
-        .row {
-
-        }
+        .row {}
 
         /* Style the footer */
         .footer {
@@ -96,70 +94,98 @@
 
     <div class="w3-top">
         <div class="w3-row w3-padding w3-black">
-          <div class="w3-col s3">
-            <a href="pagina-inicial.html" class="w3-button w3-block w3-black"> INÍCIO </a>
-          </div>
-          <!-- <div class="w3-col s3">
-            <a href="" class="w3-button w3-block w3-black"> SOBRE NÓS </a>
-          </div> -->
-          <div class="w3-col s3">
-            <p> </p>
-          </div>
-          <div class="w3-col s3">
-            <a href="cadastro_ou_login.html" class="w3-button w3-block w3-black">CADASTRO</a>
-          </div>
-          <div class="w3-col s3">
-            <a href="login.html" class="w3-button w3-block w3-black">LOGIN</a>
-          </div>
+            <div class="w3-col s3">
+                <a href="pagina-inicial.html" class="w3-button w3-block w3-black"> INÍCIO </a>
+            </div>
+            <div class="w3-col s3">
+                <p> </p>
+            </div>
+            <div class="w3-col s3">
+                <a href="cadastro_ou_login.html" class="w3-button w3-block w3-black">CADASTRO</a>
+            </div>
+            <div class="w3-col s3">
+                <a href="login.html" class="w3-button w3-block w3-black">LOGIN</a>
+            </div>
         </div>
-      </div>
-      
-    <div class="header">
-        
-        <h2
-            style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
-            <br>
-            Receitas 🍰
-        </h2>
     </div>
+
 
     <article>
 
-        <div class="row"
-            style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-                margin: 0; background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThKLWkIvB3JPwkMofa6BNgZEtPvFixT25Lc9Ilon-HeM4lNiPBR33qM22B1Mctz8ey9Go&usqp=CAU);">
-            <div class="column" style="background-color:#aaa; width: 25%; margin: 1%; opacity: 95%;">
-                <p style="font-size: 25px; text-align: center;">
-                    Lista de Receitas
-                </p>
-                <ul>
-                    <li> <a href="caçarola-de-frango.html" target="_blank" rel="external" hreflang="pt" type="text/html"> Caçarola de Frango </a> </li>
-                    <li> Bife Chili (Apimentado) </li>
-                    <li> Molho de Queijo </li>
-                    <li> Escondidinho de Camarão </li>
-                    <li> Macarrão Alho e Oleo </li>
-                </ul>
+        <div class="row" style="position: fixed; left: 40%; top: 40%;">
+            <div class="bgimg w3-display-container w3-text-white">
+                <div class="w3-display-topleft w3-container w3-xlarge"
+                    style="font-family: 'Courier New', Courier, monospace;">
+                    <p><button onclick="document.getElementById('Lista de Receitas').style.display='block'"
+                            class="w3-button w3-black">Lista de Receitas</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="position: fixed; left: 41%; top: 50%;">
+            <div class="bgimg w3-display-container w3-text-white">
+                <div class="w3-display-topleft w3-container w3-xlarge"
+                    style="font-family: 'Courier New', Courier, monospace;">
+                    <p><button onclick="document.getElementById('Postar Receitas').style.display='block'"
+                            class="w3-button w3-black">Postar Receitas</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="Lista de Receitas" class="w3-modal">
+            <div class="w3-modal-content w3-animate-zoom">
+                <div class="w3-container w3-black w3-display-container">
+                    <span onclick="document.getElementById('Lista de Receitas').style.display='none'"
+                        class="w3-button w3-display-topright w3-large">x</span>
+                    <h1>Lista de Receitas</h1>
+                </div>
+                <div class="w3-container">
+                    <h5> <a href="caçarola-de-frango.html" target="_blank" rel="external" hreflang="pt" type="text/html"> Caçarola de Frango </a> </h5>
+                    <h5> Bife Chili (Apimentado) </h5>
+                    <h5> Molho de Queijo </h5>
+                    <h5> Escondidinho de Camarão </h5>
+                    <h5> Macarrão Alho e Oleo </h5>
+
+                </div>
+                <!-- <div class="w3-container w3-black">
+                <h1>Main Courses</h1>
+              </div>
+              <div class="w3-container">
+                <h5>Grilled Fish and Potatoes <b>$8.50</b></h5>
+                <h5>Italian Pizza <b>$5.50</b></h5>
+                <h5>Veggie Pasta <b>$4.00</b></h5>
+                <h5>Chicken and Potatoes <b>$6.50</b></h5>
+                <h5>Deluxe Burger <b>$5.00</b></h5>
+              </div>
+              <div class="w3-container w3-black">
+                <h1>Desserts</h1>
+              </div>
+              <div class="w3-container">
+                <h5>Fruit Salad <b>$2.50</b></h5>
+                <h5>Ice cream <b>$2.00</b></h5>
+                <h5>Chocolate Cake <b>$4.00</b></h5>
+                <h5>Cheese <b>$5.50</b></h5>
+              </div> -->
             </div>
         </div>
 
     </article>
 
-    <div class="row"
-        style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+    <div class="row">
         <div class="w3-row w3-padding w3-black"">
-            <div class="w3-col s3"> 
-                <a href="#menu" class="w3-button w3-block w3-black">SOBRE NÓS</a> 
-            </div>
-            <div class="w3-col s3"> 
-                <p> </p>
-            </div>
-            <div class="w3-col s3"> 
-                <p> </p>
-            </div>
-            <div class="w3-col s3"> 
-                <a href="#menu" class="w3-button w3-block w3-black">POLÍTICA DE COPYRIGHT </a> 
-            </div>
+            <div class=" w3-col s3">
+            <a href="#menu" class="w3-button w3-block w3-black">SOBRE NÓS</a>
         </div>
+        <div class="w3-col s3">
+            <p> </p>
+        </div>
+        <div class="w3-col s3">
+            <p> </p>
+        </div>
+        <div class="w3-col s3">
+            <a href="#menu" class="w3-button w3-block w3-black">POLÍTICA DE COPYRIGHT </a>
+        </div>
+    </div>
     </div>
 
 </body>
