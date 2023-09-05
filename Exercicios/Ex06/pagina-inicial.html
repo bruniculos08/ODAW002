@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title> Receitas </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+    <style>
+        /* Define o tamanho da box de todos os itens como "border-box"? */
+        * {
+            box-sizing: border-box;
+        }
+
+        .bgimg {
+            background-image: url('/w3images/onepage_restaurant.jpg');
+            min-height: 100%;
+            background-position: center;
+            background-size: cover;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            /* font-family: "Inconsolata", sans-serif; */
+            
+            /* Adicionado para forçar a tag article a ocupar o meio da página inteira,...
+            ... isto é, forçar o footer abaixo */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; margin:0;
+            background-color: #f1f1f1;
+        }
+
+        /* Adicionado para forçar a tag article a ocupar o meio da página inteira,...
+        ... isto é, forçar o footer abaixo */
+        article {
+            flex: 1;
+        }
+
+        /* Style the header */
+        .header {
+            background-color: #f1f1f1;
+            padding: 30px;
+            text-align: center;
+            font-size: 35px;
+        }
+
+        /* Create three equal columns that floats next to each other */
+        .column {
+            float: left;
+            /* Esta porcentage de width limita o número de colunas que cabem numa row */
+            width: 33.33%;
+            padding: 10px;
+            height: 300px;
+            /* Should be removed. Only for demonstration */
+        }
+
+        /* O que é um float: */
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .row {
+
+        }
+
+        /* Style the footer */
+        .footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+        @media (max-width: 600px) {
+            .column {
+                width: 100%;
+            }
+
+            .footer {
+                width: 100%;
+            }
+
+            /* Por que o '@'? */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="w3-top">
+        <div class="w3-row w3-padding w3-black">
+          <div class="w3-col s3">
+            <a href="pagina-inicial.html" class="w3-button w3-block w3-black"> INÍCIO </a>
+          </div>
+          <!-- <div class="w3-col s3">
+            <a href="" class="w3-button w3-block w3-black"> SOBRE NÓS </a>
+          </div> -->
+          <div class="w3-col s3">
+            <p> </p>
+          </div>
+          <div class="w3-col s3">
+            <a href="cadastro_ou_login.html" class="w3-button w3-block w3-black">CADASTRO</a>
+          </div>
+          <div class="w3-col s3">
+            <a href="login.html" class="w3-button w3-block w3-black">LOGIN</a>
+          </div>
+        </div>
+      </div>
+      
+    <div class="header">
+        
+        <h2
+            style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+            <br>
+            Receitas 🍰
+        </h2>
+    </div>
+
+    <article>
+
+        <div class="row"
+            style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                margin: 0; background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThKLWkIvB3JPwkMofa6BNgZEtPvFixT25Lc9Ilon-HeM4lNiPBR33qM22B1Mctz8ey9Go&usqp=CAU);">
+            <div class="column" style="background-color:#aaa; width: 25%; margin: 1%; opacity: 95%;">
+                <p style="font-size: 25px; text-align: center;">
+                    Lista de Receitas
+                </p>
+                <ul>
+                    <li> <a href="caçarola-de-frango.html" target="_blank" rel="external" hreflang="pt" type="text/html"> Caçarola de Frango </a> </li>
+                    <li> Bife Chili (Apimentado) </li>
+                    <li> Molho de Queijo </li>
+                    <li> Escondidinho de Camarão </li>
+                    <li> Macarrão Alho e Oleo </li>
+                </ul>
+            </div>
+        </div>
+
+    </article>
+
+    <div class="row"
+        style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+        <div class="w3-row w3-padding w3-black"">
+            <div class="w3-col s3"> 
+                <a href="#menu" class="w3-button w3-block w3-black">SOBRE NÓS</a> 
+            </div>
+            <div class="w3-col s3"> 
+                <p> </p>
+            </div>
+            <div class="w3-col s3"> 
+                <p> </p>
+            </div>
+            <div class="w3-col s3"> 
+                <a href="#menu" class="w3-button w3-block w3-black">POLÍTICA DE COPYRIGHT </a> 
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
