@@ -1,0 +1,62 @@
+<HTML>
+
+<HEAD>
+    <TITLE> Introdução ao Javascript </TITLE>
+</HEAD>
+
+<BODY>
+
+    <H1> Exercícios </H1>
+
+    <! ******************************************************>
+
+    
+    <! Ex01 >
+    
+    <form name="Ex01">
+        <label for="primeiroNome"> 1º Nome: </label>
+        <input type="text" id="primeiroNome" name="primeiroNome">
+        <!-- &nbsp; -->
+        <label for="segundoNome"> 2º Nome: </label>
+        <input type="text" id="segundoNome" name="segundoNome">
+        <!-- &nbsp; -->
+        <label for="terceiroNome"> 3º Nome: </label>
+        <input type="text" id="terceiroNome" name="terceiroNome">
+        <!-- &nbsp; -->
+        <input type="checkbox" id="maiusculo" name="maiusculo"
+            value="1" onclick="if (this.checked) 
+            { AltMaiusc(); } ">
+        <label for="maiusculo"> Maiúsculo
+        <!-- &nbsp; -->
+        <input type="checkbox" id="minusculo" name="minusculo"
+            value="1" onclick="if (this.checked) 
+            { AltMinusc(); } ">
+        <label for="minusculo"> Minúsculo
+    </form>
+
+    <script>
+        function AltMaiusc () { 
+            document.Ex01.primeiroNome.value = document.Ex01.primeiroNome.value.toUpperCase();   
+            document.Ex01.primeiroNome.checked = false;
+            document.Ex01.segundoNome.value = document.Ex01.segundoNome.value.toUpperCase();   
+            document.Ex01.segundoNome.checked = false;
+            document.Ex01.terceiroNome.value = document.Ex01.terceiroNome.value.toUpperCase();   
+            document.Ex01.terceiroNome.checked = false;
+        } 
+        function AltMinusc () { 
+            document.Ex01.primeiroNome.value = document.Ex01.primeiroNome.value.toLowerCase();   
+            document.Ex01.primeiroNome.checked = false;
+            document.Ex01.segundoNome.value = document.Ex01.segundoNome.value.toLowerCase();   
+            document.Ex01.segundoNome.checked = false;
+            document.Ex01.terceiroNome.value = document.Ex01.terceiroNome.value.toLowerCase();   
+            document.Ex01.terceiroNome.checked = false;
+        } 
+
+    </script>
+   
+    
+    <! ******************************************************>
+
+
+</BODY>
+</HTML>

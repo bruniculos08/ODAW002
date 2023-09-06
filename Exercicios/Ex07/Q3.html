@@ -1,0 +1,58 @@
+<HTML>
+
+    <HEAD>
+        <TITLE> Introdução ao Javascript </TITLE>
+    </HEAD>
+    
+    <BODY>
+    
+        <H1> Exercícios </H1>
+    
+        <! ******************************************************>
+    
+        <! Ex03 >
+        
+        <script>
+
+            nome = prompt("Digite seu nome: ");
+            const data = new Date();
+            document.write("boa tarde " + nome + ", hoje é " + convertToDayString(data.getDay()) + 
+                ", " + data.getDate() + "/" + (data.getMonth() + 1) + "/" + data.getFullYear());
+            
+            function convertToDayString(weekDay){
+                switch (weekDay) {
+                    case 0:
+                        return "domingo";
+                        break;
+                    case 1:
+                        return "segunda-feira";
+                        break;
+                    case 2:
+                        return "terça-feira";
+                        break;
+                    case 3:
+                        return "quarta-feira";
+                        break;
+                    case 4:
+                        return "quinta-feira";
+                        break;
+                    case 5:
+                        return "sexta-feira";
+                        break;
+                    case 6:
+                        return "sábado";
+                        break;
+                    default:
+                        break;
+                }
+                return "?";
+            }
+
+        </script>
+       
+        
+        <! ******************************************************>
+    
+    
+    </BODY>
+</HTML>

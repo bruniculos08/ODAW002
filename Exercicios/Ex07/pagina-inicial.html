@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title> Receitas </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+    <style>
+        /* Define o tamanho da box de todos os itens como "border-box"? */
+        * {
+            box-sizing: border-box;
+        }
+        h1,
+        h5 {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-image: url('https://www.hashmicro.com/blog/wp-content/uploads/2022/01/Saluran-Distribusi14.png');
+            background-position: center;
+            background-size: cover;
+            /* Adicionado para forçar a tag article a ocupar o meio da página inteira,...
+            ... isto é, forçar o footer abaixo */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+        input[type=email],
+        select {
+            width: 40%;
+            padding: 12px, 20px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type=text],
+        select {
+            width: 25%;
+            padding: 12px, 20px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type=password],
+        select {
+            width: 25%;
+            padding: 12px, 20px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        /* Adicionado para forçar a tag article a ocupar o meio da página inteira,...
+        ... isto é, forçar o footer abaixo */
+        article {
+            flex: 1;
+        }
+        /* Style the header */
+        .header {
+            background-color: #f1f1f1;
+            padding: 30px;
+            text-align: center;
+            font-size: 35px;
+        }
+        /* Create three equal columns that floats next to each other */
+        .column {
+            float: left;
+            /* Esta porcentage de width limita o número de colunas que cabem numa row */
+            width: 33.33%;
+            padding: 10px;
+            height: 300px;
+            /* Should be removed. Only for demonstration */
+        }
+        /* O que é um float: */
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .row {}
+        /* Style the footer */
+        .footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+        }
+        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+        @media (max-width: 600px) {
+            .column {
+                width: 100%;
+            }
+            .footer {
+                width: 100%;
+            }
+            /* Por que o '@'? */
+        }
+    </style>
+</head>
+<body>
+    <div class="w3-top">
+        <div class="w3-row w3-padding w3-black">
+            <div class="w3-col s3">
+                <a href="pagina-inicial.html" class="w3-button w3-block w3-black"> INÍCIO </a>
+            </div>
+            <div class="w3-col s3">
+                <p> </p>
+            </div>
+            <div class="w3-col s3">
+                <a onclick="document.getElementById('menu-cadastro').style.display='block'"
+                    class="w3-button w3-block w3-black">
+                    CADASTRO
+                </a>
+            </div>
+            <div class="w3-col s3">
+                <a onclick="document.getElementById('menu-login').style.display='block'"
+                    class="w3-button w3-block w3-black">
+                    LOGIN
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <article>
+        <div class="row" style="position: fixed; left: 40%; top: 40%;">
+            <div class="bgimg w3-display-container w3-text-white">
+                <div class="w3-display-topleft w3-container w3-xlarge"
+                    style="font-family: 'Courier New', Courier, monospace;">
+                    <p><button onclick="document.getElementById('Lista de Receitas').style.display='block'"
+                            class="w3-button w3-black">Lista de Receitas</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="position: fixed; left: 41%; top: 50%;">
+            <div class="bgimg w3-display-container w3-text-white">
+                <div class="w3-display-topleft w3-container w3-xlarge"
+                    style="font-family: 'Courier New', Courier, monospace;">
+                    <p><button onclick="document.getElementById('Postar Receitas').style.display='block'"
+                            class="w3-button w3-black">Postar Receitas</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="Lista de Receitas" class="w3-modal">
+            <div class="w3-modal-content w3-animate-zoom">
+                <div class="w3-container w3-black w3-display-container">
+                    <span onclick="document.getElementById('Lista de Receitas').style.display='none'"
+                        class="w3-button w3-display-topright w3-large">x</span>
+                    <h1>Lista de Receitas</h1>
+                </div>
+                <div class="w3-container">
+                    <h5> <a href="caçarola-de-frango.html" target="_blank" rel="external" hreflang="pt"
+                            type="text/html"> Caçarola de Frango </a> </h5>
+                    <h5> Bife Chili (Apimentado) </h5>
+                    <h5> Molho de Queijo </h5>
+                    <h5> Escondidinho de Camarão </h5>
+                    <h5> Macarrão Alho e Oleo </h5>
+                </div>
+                <!-- <div class="w3-container w3-black">
+                    <h1>Main Courses</h1>
+                </div>
+                <div class="w3-container">
+                    <h5>Grilled Fish and Potatoes <b>$8.50</b></h5>
+                    <h5>Italian Pizza <b>$5.50</b></h5>
+                    <h5>Veggie Pasta <b>$4.00</b></h5>
+                    <h5>Chicken and Potatoes <b>$6.50</b></h5>
+                    <h5>Deluxe Burger <b>$5.00</b></h5>
+                </div>
+                <div class="w3-container w3-black">
+                    <h1>Desserts</h1>
+                </div>
+                <div class="w3-container">
+                    <h5>Fruit Salad <b>$2.50</b></h5>
+                    <h5>Ice cream <b>$2.00</b></h5>
+                    <h5>Chocolate Cake <b>$4.00</b></h5>
+                    <h5>Cheese <b>$5.50</b></h5>
+                </div> -->
+            </div>
+        </div>
+
+        <div id="menu-login" class="w3-modal">
+            <div class="w3-modal-content w3-animate-zoom">
+                <div class="w3-container w3-black w3-display-container">
+                    <span onclick="document.getElementById('menu-login').style.display='none'"
+                        class="w3-button w3-display-topright w3-large">x</span>
+                    <h1>Login</h1>
+                </div>
+                <div class="w3-container" style="text-align: center;">
+                    <form action="page.js" method="POST" style="font-family:'Courier New', Courier, monospace;">
+                        <br>
+                        <label for="email"> E-mail: </label>
+                        <input type="email" id="email" name="email">
+                        <br><br>
+                        <label for="senha"> Senha: </label>
+                        <input type="password" id="senha" name="senha">
+                        &nbsp;
+                        <br><br>
+                        <input type="checkbox" id="Lembrar senha" name="Lembrar_senha">
+                        <label for="Lembrar_senha"> Lembrar senha</label>
+                        <br><br>
+                        <button type="reset"> Limpar </button>
+                        <button type="submit"> Login </button>
+                        <br><br>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="menu-cadastro" class="w3-modal">
+            <div class="w3-modal-content w3-animate-zoom">
+                <div class="w3-container w3-black w3-display-container">
+                    <span onclick="document.getElementById('menu-cadastro').style.display='none'"
+                        class="w3-button w3-display-topright w3-large">x</span>
+                    <h1>Cadastro</h1>
+                </div>
+                <div class="w3-container" style="text-align: left; margin-left: 10%;">
+                    <form action="page.js" method="POST">
+                        <br>
+                        <label for="primeiroNome"> Nome: </label>
+                        <input type="text" id="primeiroNome" name="primeiroNome">
+                        &nbsp;
+                        <!-- &nbsp; gera um espaço na linha por isso serve para separar itens da mesma altura da página-->
+                        <label for="ultimoNome"> Sobrenome: </label>
+                        <input type="text" id="ultimoNome" name="ultimoNome">
+                        <br><br>
+                        <label for="email"> E-mail: </label>
+                        <input type="email" id="email" name="email">
+                        <br><br>
+                        <label for="senha"> Senha: </label>
+                        <input type="password" id="senha" name="senha">
+                        &nbsp;
+                        <label for="senha"> Confirmar senha: </label>
+                        <input type="password" id="senha" name="senha">
+                        <br><br>
+                        <input type="checkbox" id="termos_e_condicoes" name="termos_e_condicoes">
+                        <label for="termos_e_condicoes"> Eu concordo com os
+                            <a href="" target="_blank" rel="external" hreflang="pt" type="text/html">
+                                termos e condições.
+                            </a>
+                        </label>
+                        <br><br>
+                        <button type="reset"> Limpar formulário </button>
+                        <button type="submit"> Finalizar </button>
+                        <br><br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </article>
+    <div class="row">
+        <div class="w3-row w3-padding w3-black"">
+            <div class=" w3-col s3">
+            <a href="#menu" class="w3-button w3-block w3-black">SOBRE NÓS</a>
+        </div>
+        <div class="w3-col s3">
+            <p> </p>
+        </div>
+        <div class="w3-col s3">
+            <p> </p>
+        </div>
+        <div class="w3-col s3">
+            <a href="#menu" class="w3-button w3-block w3-black">POLÍTICA DE COPYRIGHT </a>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

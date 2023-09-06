@@ -1,0 +1,55 @@
+<HTML>
+
+    <HEAD>
+        <TITLE> Introdução ao Javascript </TITLE>
+    </HEAD>
+    
+    <BODY>
+    
+        <H1> Exercícios </H1>
+    
+        <! ******************************************************>
+    
+        
+        <! Ex02 >
+        
+        <form name="Ex02">
+            <label for="primeiroNome"> 1º Nome: </label>
+            <input type="text" id="primeiroNome" name="primeiroNome" required>
+            <!-- &nbsp; -->
+            <label for="segundoNome"> 2º Nome: </label>
+            <input type="text" id="segundoNome" name="segundoNome" required>
+            <!-- &nbsp; -->
+            <label for="terceiroNome"> 3º Nome: </label>
+            <input type="text" id="terceiroNome" name="terceiroNome" required>
+            <!-- &nbsp; -->
+            <label for="quartoNome"> 4º Nome: </label>
+            <input type="text" id="quartoNome" name="quartoNome" required>
+            <!-- &nbsp; -->
+            <button type="submit" onclick="lookEmpty()"> Finalizar </button>
+        </form>
+    
+        <script>
+
+            function lookEmpty(){
+                if(document.Ex02.primeiroNome.value == "" || document.Ex02.segundoNome.value == ""
+                    || document.Ex02.terceiroNome.value == "" || document.Ex02.quartoNome.value == ""){
+                        alert("Preencha todos os dados");
+                    }
+                else{
+                    alert("Registo feito com sucesso")
+                    document.Ex02.primeiroNome.value = "";
+                    document.Ex02.segundoNome.value = "";
+                    document.Ex02.terceiroNome.value = "";
+                    document.Ex02.quartoNome.value = "";
+                }
+            }
+            
+        </script>
+       
+        
+        <! ******************************************************>
+    
+    
+    </BODY>
+</HTML>

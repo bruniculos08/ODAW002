@@ -1,0 +1,126 @@
+<HTML>
+
+<HEAD>
+    <TITLE> Introdução ao Javascript </TITLE>
+</HEAD>
+
+<style type="text/css">
+    canvas {
+        border: 1px solid white;
+        background-color: white;
+    }
+
+    body {
+        margin: 0;
+    }
+</style>
+
+<BODY>
+
+    <! ******************************************************>
+
+        <! Ex04>
+            <br>
+            <form name='parametros'> 
+            <label> 
+                Gravidade:
+            </label> 
+            <input type='number' id='g' name='g' value="200">
+            <label>
+                Comprimento:
+            </label> 
+            <input type='number' id='l' name='l' value="500"> 
+            <label>
+                Massa: 
+            </label> <input type='number' id='m' name='m' value="1">
+            </form>
+
+            <canvas>
+
+            </canvas>
+
+            <script>
+
+                // console.log('r/place');
+                // A seguinte variável receberá a primeira ocorrência do elemento <canvas>:
+                var canvas = document.querySelector('canvas');
+
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                // A variável 'c' será um objeto de contexto 2d (basicamente um objeto...
+                // ... que servirá para realizar os desenhos):
+                var c = canvas.getContext('2d');
+                // Obs.: por padrão, a variável c em canvas sempre se refere à contexto.
+
+
+                // Cor do filler (preenchimento):
+                c.fillStyle = 'rgba(255, 0, 0, 0.5)';
+
+                // Valores iniciais para equação do pêndulo simples:
+                // (1) Ponto de fixação:
+                var x_fixedPoint = 750;
+                var y_fixedPoint = 0;
+                // (2) Ângulo de balanço inicial:
+                var theta_inicial = 0;
+                // (3) Gravidade:
+                var g = 10;
+                // (4) Comprimento do cabo:
+                var l = 500;
+                // (5) Omega:
+                var omega = Math.sqrt(g / l);
+                // (6) thetaDot_zero:
+                var v0 = omega * 0.5;
+
+                var x_inicial = Math.sin(theta_inicial) * l;
+                var y_inicial = Math.cos(theta_inicial) * l;
+                var t = 0;
+                var flag = false;
+
+                function animate() {
+                    requestAnimationFrame(animate);
+                    c.clearRect(0, 0, canvas.width, canvas.height)
+
+                    // Atualização dos valores:
+                    if(document.parametros.g.value > 0 && document.parametros.l.value > 0 && document.parametros.m.value){
+                        g = Number(document.parametros.g.value);
+                        l = Number(document.parametros.l.value);
+                        flag = false;
+                    }
+                    else{
+                        if(flag == false){
+                            alert("Não são aceitos valores negativos ou iguais à zero!");
+                        }
+                        flag = true;
+                    }
+
+                    omega = Math.sqrt(g / l);
+                    v0 = omega * 0.5;
+
+                    var theta = theta_inicial * Math.cos(omega * t) + (v0 / omega) * Math.sin(omega * t);
+                    x = x_fixedPoint - (Math.sin(theta) * l)
+                    y = y_fixedPoint + (Math.cos(theta) * l)
+
+                    c.beginPath();
+                    c.moveTo(x_fixedPoint, y_fixedPoint);
+                    c.lineTo(x, y);
+                    c.strokeStyle = "#22A";
+                    c.stroke();
+
+                    c.beginPath();
+                    c.fillStyle = 'rgba(100, 100, 220, 0.8)';
+                    c.arc(x, y, 100, 0, Math.PI * 2, false);
+                    c.fill();
+
+                    t += 0.1;
+                }
+                animate();
+            </script>
+
+
+            <! ******************************************************>
+
+
+</BODY>
+
+</HTML>
