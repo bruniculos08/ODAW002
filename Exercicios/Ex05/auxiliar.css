@@ -1,0 +1,18 @@
+.linkBarNoRodape {
+    position: relative;
+    background-color: white;
+    width: 1510px;
+    height: 425px;
+}
+
+.linkNoRodape {
+    position: absolute;
+    /* bottom: 5px; */
+    background-color: white;
+}
+
+#formsSquare {
+    border-radius: 12px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
