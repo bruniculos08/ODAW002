@@ -67,9 +67,9 @@ function checkSignUpPassword(){
 }
 
 function checkTermsAndConditions(){
-    var b = document.getElementById("termos_e_condicoes").value;
+    var b = document.getElementById("termos_e_condicoes").checked;
     console.log(b);
-    if(b.toString() === "off"){
+    if(b == false){
         document.getElementById("warning_termos_e_condicoes").innerHTML = 
         "<font color='red'> <br> Você deve aceitar os termos e condições para continuar. </font>";
         return false
@@ -78,12 +78,11 @@ function checkTermsAndConditions(){
 }
 
 function checkCPF(){
-    let test_cpf = document.getElementById("cpf").value;
-    let cpf = test_cpf; 
+    var cpf = document.getElementById("cpf").value;
 
-    console.log("cpf's:");
-    console.log(test_cpf);
-    console.log(cpf);
+    console.log("Últimos digitios:")
+    console.log(cpf[9])
+    console.log(cpf[10])
 
     var firstDigit = 0, i = 0;
     for(var count = 10; count > 1; count--){
@@ -93,7 +92,6 @@ function checkCPF(){
     firstDigit = firstDigit % 11;
     if(firstDigit < 2) firstDigit = 0;
     else firstDigit = 11 - firstDigit;
-    cpf[i] = firstDigit;
     
     secondDigit = 0, i = 0;
     for(var count = 11; count > 1; count--){
@@ -103,12 +101,8 @@ function checkCPF(){
     secondDigit = secondDigit % 11;
     if(secondDigit < 2) secondDigit = 0;
     else secondDigit = 11 - secondDigit;
-    cpf[i] = secondDigit;
 
-    console.log(firstDigit);
-    console.log(secondDigit);
-
-    if(test_cpf.toString() === cpf.toString()) return true;
+    if(cpf[9] == firstDigit && cpf[10] == secondDigit) return true;
     document.getElementById("warning_cpf").innerHTML = "<font color='red'> CPF inválido! <br> </font>";
     return false;
 }
@@ -134,6 +128,8 @@ function clearAllInnerHTML(){
 }
 
 function checkSignUp(){
+    clearAllInnerHTML();
+
     if(checkEmptyNameEmailCPF() && checkCPF() && checkTermsAndConditions() && checkSignUpDate() && checkSignUpPassword()){
         document.getElementById('sign_up').reset();
         document.getElementById("warning_cadastro").innerHTML = 
