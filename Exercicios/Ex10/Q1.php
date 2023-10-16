@@ -95,11 +95,16 @@
 <p>
 Formulário de teste
     <?php 
-    
     if($_SESSION["forms_error_name_empy"]){
         echo "<div>faltou nome</div>";
     } 
-    
+    if($_SESSION["forms_error_email_empy"]){
+        echo "<div>faltou email</div>";
+    }
+    if($_SESSION["forms_error_github_empy"]){
+        echo "<div>faltou github</div>";
+    } 
+    session_destroy();
     ?>
 
     <!-- A action é a função (script) chamada ao ocorrer submit na página: -->
