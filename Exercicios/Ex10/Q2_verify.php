@@ -24,17 +24,15 @@
 
     $_SESSION["name"] = $_POST["name"];
     $_SESSION["password"] = $_POST["password"];
-    $_SESSION["login_error"] = true;
+    //$_SESSION["login_error"] = false;
     
     $myfile = fopen("Q2.txt", "r") or die("Unable to open file!");
     $line = '';
     while(!feof($myfile)){
         $line = fgets($myfile);
         $line = str_replace("\n","",$line);
-        echo $line;
         // $line = test_input($line);
         if($line == "user:"){
-            header("Location: Q2_confirmation.php");
             $line = fgets($myfile);
             $line = str_replace("\n","",$line);
             if($line == ($_SESSION["name"])){
@@ -44,14 +42,14 @@
                 if($line == ($_SESSION["password"])){
                     $_SESSION["login_error"] = false;
                     header("Location: Q2_confirmation.php");
-                    // session_destroy();
-                    // exit;
+                    die();
                 }
             }
         }
     }
 
-    // header("Location: Q2.php");
-    session_destroy();
-    exit;
+    $_SESSION["login_error"] = true;
+    header("Location: Q2.php");
+    //session_destroy();
+    //exit;
 ?>

@@ -33,7 +33,7 @@
         return $vet;
     }
 
-    $vet = array(2, 3, 1);
+    $vet = array(2, 3, 1, 4);
     quickSort($vet, 0, count($vet)-1);
     for ($i=0; $i < count($vet) ; $i++) { 
         echo $vet[$i]."\n";

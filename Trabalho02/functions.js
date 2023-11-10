@@ -1,3 +1,4 @@
+
 async function sha256(message) {
     // encode as UTF-8
     const msgBuffer = new TextEncoder().encode(message);                    
@@ -127,21 +128,144 @@ function clearAllInnerHTML(){
     document.getElementById("warning_senha").innerHTML = "";
 }
 
+function checkSignIn(){
+    clearAllInnerHTML();
+
+    let email = document.getElementById("email").value;
+    var senha = document.getElementById("senha_sign_in").value; 
+    
+    var resp = "teste";
+
+    fetch("http://localhost/Trabalho02/insert_sign_in.php", {
+        method: "POST",
+        headers: {
+                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+            },
+            body: `email=${email}&senha=${senha}`,
+        })
+    .then((response) => response.text())
+    .then((res) => {
+        resp = res;
+
+        console.log("warning_login: ");
+        console.log(resp);
+        console.log("result:");
+        console.log(resp.length);
+
+        if(resp.length == 1){
+            location.reload();
+        }
+        else{
+            document.getElementById("warning_login").innerHTML = res;
+        }
+    });
+    
+    document.getElementById('sign_in').reset();
+}
+
 function checkSignUp(){
     clearAllInnerHTML();
 
     if(checkEmptyNameEmailCPF() && checkCPF() && checkTermsAndConditions() && checkSignUpDate() && checkSignUpPassword()){
-        document.getElementById('sign_up').reset();
-        document.getElementById("warning_cadastro").innerHTML = 
-            "<font color='green'> Cadastro feito com sucesso! <br> </font>";
-        var mysql = require('mysql');
-        var con = mysql.createConnection({
-            host : 
+
+        let cpf = document.getElementById("cpf").value;
+        let email = document.getElementById("email_cadastro").value;
+        let nome = document.getElementById("primeiroNomeCadastro").value;
+        let sobrenome = document.getElementById("ultimoNomeCadastro").value;
+        var senha = document.getElementById("senha_sign_up").value; 
+        var senha_confirmada = document.getElementById("senha_confirmada").value;
+        
+        fetch("http://localhost/Trabalho02/insert_sign_up.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+            },
+            body: `cpf=${cpf}&email=${email}&nome=${nome}&sobrenome=${sobrenome}
+            &senha=${senha}&senha_confirmada=${senha_confirmada}`,
         })
-        // document.getElementById('menu-cadastro').style.display='none';
-        // document.getElementById('menu-login').style.display='block';
+        .then((response) => response.text())
+        .then((res) => (document.getElementById("warning_cadastro").innerHTML = res));
+        
+        document.getElementById('sign_up').reset();
     }
     else{
         document.getElementById('sign_up').reset();
     }
+}
+
+function logout(){
+    var stuff;
+    fetch("http://localhost/Trabalho02/sair.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+            },
+            body: ``,
+        })
+        .then((response) => response.text())
+        .then((res) => (stuff = res));
+    location.reload();
+}
+
+function postarReceita(){
+    
+}
+
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
+// handles the click event for link 1, sends the query
+function getOutputInsertInDataBase() {
+    getRequest(
+        'insert_sign_up.php', // URL for the PHP file
+         drawOutput,  // handle successful request
+         drawError    // handle error
+    );
+    return false;
+  }  
+  // handles drawing an error message
+  function drawError() {
+      var container = document.getElementById('output');
+      container.innerHTML = 'Bummer: there was an error!';
+  }
+  // handles the response, adds the html
+  function drawOutput(responseText) {
+      var container = document.getElementById('output');
+      container.innerHTML = responseText;
+  }
+  // helper function for cross-browser request object
+  function getRequest(url, success, error) {
+      var req = false;
+      try{
+          // most browsers
+          req = new XMLHttpRequest();
+      } catch (e){
+          // IE
+          try{
+              req = new ActiveXObject("Msxml2.XMLHTTP");
+          } catch(e) {
+              // try an older version
+              try{
+                  req = new ActiveXObject("Microsoft.XMLHTTP");
+              } catch(e) {
+                  return false;
+              }
+          }
+      }
+      if (!req) return false;
+      if (typeof success != 'function') success = function () {};
+      if (typeof error!= 'function') error = function () {};
+      req.onreadystatechange = function(){
+          if(req.readyState == 4) {
+              return req.status === 200 ? 
+                  success(req.responseText) : error(req.status);
+          }
+      }
+      req.open("GET", url, true);
+      req.send(null);
+      return req;
 }

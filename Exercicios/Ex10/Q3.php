@@ -11,15 +11,7 @@
 
 <p>
 Formulário de teste
-    <?php 
-        if($_SESSION["login_error"]){
-            echo "<div> Usuário ou senha errado(s). </div>";
-        } 
-        //$_SESSION["login_error"] = true;
-        session_destroy();
-    ?>
-
-    <form method="POST" action="Q2_verify.php">
+    <form method="POST" action="Q3_response.php">
         <!-- O script PHP em value faz com que caso o usuário
         digite o conteúdo e ocorra um erro seja recarregado o que havia
         sido digitado: -->
