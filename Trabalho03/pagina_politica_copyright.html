@@ -5,9 +5,9 @@
 .error {color: #FF0000;}
 </style>
 
-<?php
-    session_start();
-?>
+<script type="text/javascript" src="jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="jquery-mask.js"></script>
+<script type="text/javascript" src="sistema.js"></script>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -19,21 +19,12 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="index.css">
 
     <style>
-        /* Define o tamanho da box de todos os itens como "border-box"? */
-        * {
-            box-sizing: border-box;
-        }
-        h1,
-        h5 {
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        body {
+        body{
             font-family: 'Courier New', Courier, monospace;
             background-color: #f1f1f1;
-            /* background-image: url('https://www.hashmicro.com/blog/wp-content/uploads/2022/01/Saluran-Distribusi14.png'); */
             background-position: center;
             background-size: cover;
             /* Adicionado para forçar a tag article a ocupar o meio da página inteira,...
@@ -43,156 +34,46 @@
             min-height: 100vh;
             margin: 0;
         }
-        input[type=email],
-        select {
-            width: 40%;
-            padding: 12px, 20px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        input[type=text],
-        select {
-            width: 25%;
-            padding: 12px, 20px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        input[type=password],
-        select {
-            width: 25%;
-            padding: 12px, 20px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        /* Adicionado para forçar a tag article a ocupar o meio da página inteira,...
-        ... isto é, forçar o footer abaixo */
-        article {
-            flex: 1;
-        }
-        /* Style the header */
-        .header {
-            background-color: #f1f1f1;
-            padding: 30px;
-            text-align: center;
-            font-size: 35px;
-        }
-        /* Create three equal columns that floats next to each other */
-        .column {
-            float: left;
-            /* Esta porcentage de width limita o número de colunas que cabem numa row */
-            width: 33.33%;
-            padding: 10px;
-            height: 300px;
-            /* Should be removed. Only for demonstration */
-        }
-        /* O que é um float: */
-        /* Clear floats after the columns */
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-        .row {}
-        /* Style the footer */
-        .footer {
-            background-color: #f1f1f1;
-            padding: 10px;
-            text-align: center;
-        }
-        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-        @media (max-width: 600px) {
-            .column {
-                width: 100%;
-            }
-            .footer {
-                width: 100%;
-            }
-            /* Por que o '@'? */
-        }
     </style>
 </head>
 <body>
     <div class="w3-top">
         <div class="w3-row w3-padding w3-black">
             <div class="w3-col s3">
-                <a href="pagina_inicial.php" class="w3-button w3-block w3-black"> INÍCIO </a>
+                <a href="pagina_inicial.html" class="w3-button w3-block w3-black"> INÍCIO </a>
             </div>
             <div class="w3-col s3">
                 <p> </p>
             </div>
-            
-            <?php 
-                if($_SESSION["login"] != true){
-                    echo "
-                    <div class=\"w3-col s3\">
-                        <a onclick=\"document.getElementById('menu-cadastro').style.display='block'\"
-                            class=\"w3-button w3-block w3-black\">
-                            CADASTRO
-                        </a>
-                    </div>
-                    ";
-                }
-                else{
-                    echo "
-                    <div class=\"w3-col s3\">
-                        <p> </p>
-                    </div>
-                    ";
-                }
-            ?>
-            <script src="functions.js"></script>
-            <?php 
-                if($_SESSION["login"] == true){
-                    echo "
-                    <div class=\"w3-col s3\">
-                    <a onclick=\"logout()\"
-                            class=\"w3-button w3-block w3-black\">
-                            SAIR
-                        </a>
-                    </div>";
-                }
-                else{
-                    echo "<div class=\"w3-col s3\">
-                    <a onclick=\"document.getElementById('menu-login').style.display='block'\"
-                        class=\"w3-button w3-block w3-black\">
-                        LOGIN
-                    </a>
-                    </div>";
-                }
-            ?>
         </div>
     </div>
 
     <article>
-
-        <div style="position: auto; left: 40%; top: 40%; background: #d3d3d3;">
-            <div class="bgimg w3-display-container w3-text-black" style="background-color: green;">
+        <div style="position: auto; left: 40%; top: 40%;">
+            <div class="bgimg w3-display-container w3-text-black ">
                 <div class="w3-display-topleft w3-container w3-xlarge"
-                    style="font-family: 'Courier New', Courier, monospace; margin-right: 225px; margin-left: 225px; margin-top: 225px;" >
-                    
+                    style="font-family: 'Courier New', Courier, monospace; margin-right: 225px; margin-left: 225px;" >
+                    <br><br><br><br><br>
+                    <h2> MIT License </h2>
+                    <h3> Copyright (c) GitFood </h3>
+                    <h5> Permission is hereby granted, free of charge, to any person obtaining a copy
+                        of this software and associated documentation files (the "Software"), to deal
+                        in the Software without restriction, including without limitation the rights
+                        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+                        copies of the Software, and to permit persons to whom the Software is
+                        furnished to do so, subject to the following conditions:
 
-                    <h2> Termos de uso </h2>
-                    <!-- <h3> Copyright (c) GitFood </h3> -->
-                    <h5> <b> Apenas um texto sobre o Batman (Fonte: Wikipedia): </b> 
-                        Batman[a] is a superhero appearing in American comic books published by DC Comics. 
-                        The character was created by artist Bob Kane and writer Bill Finger, and debuted in 
-                        the 27th issue of the comic book Detective Comics on March 30, 1939. In the DC Universe continuity, 
-                        Batman is the alias of Bruce Wayne, a wealthy American playboy, philanthropist, and industrialist who resides 
-                        in Gotham City. Batman's origin story features him swearing vengeance against criminals after witnessing the murder 
-                        of his parents Thomas and Martha as a child, a vendetta tempered with the ideal of justice. 
-                        He trains himself physically and intellectually, crafts a bat-inspired persona, 
-                        and monitors the Gotham streets at night. Kane, Finger, and other creators accompanied 
-                        Batman with supporting characters, including his sidekicks Robin and Batgirl; allies Alfred Pennyworth, 
-                        James Gordon, and Catwoman; and foes such as the Penguin, the Riddler, Two-Face, and his archenemy, the Joker.
-                    </h5>
+                        The above copyright notice and this permission notice shall be included in all
+                        copies or substantial portions of the Software.
 
-
+                        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+                        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+                        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+                        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+                        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+                        SOFTWARE.
+                </h4>
                 </div>
             </div>
         </div>
@@ -276,8 +157,5 @@
                 </div>
             </div>
         </div>
-</body>
-</html>
-
 </body>
 </html>

@@ -47,7 +47,8 @@
         $query = "INSERT INTO usuarios (ID_Usuario, nome, sobrenome, email, senha, cpf) VALUES 
             ('$max_id', '$nome', '$sobrenome', '$email', '$senha', '$cpf');";
 
-        echo $query;
+        // Lembre-se que o retorno para a função que chama este código é o que este código printa (echo).
+        // echo $query;
 
         if(mysqli_query($conexao, $query) != false){
             echo "<font color='green'> Cadastro feito com sucesso. <br> </font>";

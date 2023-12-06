@@ -1,10 +1,14 @@
+class Sistema{
+    constructor(){
+        this.receitas = [];
+    }
 
-async function sha256(message) {
+sha256(message) {
     // encode as UTF-8
     const msgBuffer = new TextEncoder().encode(message);                    
 
     // hash the message
-    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashBuffer = crypto.subtle.digest('SHA-256', msgBuffer);
 
     // convert ArrayBuffer to Array
     const hashArray = Array.from(new Uint8Array(hashBuffer));
@@ -14,7 +18,7 @@ async function sha256(message) {
     return hashHex;
 }
 
-function hashAndSave(){
+hashAndSave(){
     // Como a função de sha256 é "async" ela retorna um objeto do tipo "Promise" com o valor de retorno...
     // ... esperado como o atributo valor deste objeto e para acessá-lo se faz o seguinte:
     let p = sha256("Bruno");
@@ -25,16 +29,8 @@ function hashAndSave(){
     });
 }
 
-// function getValuePromised(p){
-//     const k = await p.then(value => {
-//         return value;
-//     }).catch(err => {
-//         return err; // "Something went wrong"
-//     });
-//     return k;
-// }
 
-function checkSignUpDate(){
+checkSignUpDate(){
     const today = new Date;
     const yyyy = today.getFullYear();
     let mm = today.getMonth() + 1;
@@ -49,7 +45,7 @@ function checkSignUpDate(){
     return true;
 }
 
-function checkSignUpPassword(){
+checkSignUpPassword(){
     var password = document.getElementById("senha_sign_up").value; 
     var confirmedPassWord = document.getElementById("senha_confirmada").value;
     
@@ -67,7 +63,7 @@ function checkSignUpPassword(){
     return true;
 }
 
-function checkTermsAndConditions(){
+checkTermsAndConditions(){
     var b = document.getElementById("termos_e_condicoes").checked;
     console.log(b);
     if(b == false){
@@ -78,7 +74,7 @@ function checkTermsAndConditions(){
     return true;
 }
 
-function checkCPF(){
+checkCPF(){
     var cpf = document.getElementById("cpf").value;
 
     console.log("Últimos digitios:")
@@ -108,7 +104,7 @@ function checkCPF(){
     return false;
 }
 
-function checkEmptyNameEmailCPF(){
+checkEmptyNameEmailCPF(){
     let cpf = document.getElementById("cpf").value;
     let email = document.getElementById("email_cadastro").value;
     let name = document.getElementById("primeiroNomeCadastro").value;
@@ -121,57 +117,14 @@ function checkEmptyNameEmailCPF(){
     return true;
 }
 
-function checkEmptyNomeModoTempoImagem(){
-    let nome_receita = document.getElementById("nome_receita").value;
-    let modo_de_preparo = document.getElementById("modo_de_preparo").value;
-    let tempo_de_preparo = document.getElementById("tempo_de_preparo").value;
-    let imagem_receita = document.getElementById("imagem_receita").value;
-
-    if(nome_receita === "" || modo_de_preparo === "" || tempo_de_preparo < 0){
-        document.getElementsByName("warning_post_receita") = "<font color='red'> Campos vazios! <br> </font>";
-        return false;
-    }
-    return true;
-}
-
-function clearAllInnerHTML(){
+clearAllInnerHTML(){
     document.getElementById("warning_cadastro").innerHTML = "";
     document.getElementById("warning_cpf").innerHTML = "";
     document.getElementById("warning_termos_e_condicoes").innerHTML = "";
     document.getElementById("warning_senha").innerHTML = "";
-    document.getElementById("warning_post_receita").innerHTML = "";
 }
 
-function postReceipe(){
-    document.getElementById("warning_post_receita").innerHTML = "";
-    // clearAllInnerHTML();
-
-    if(checkEmptyNomeModoTempoImagem()){
-
-        let nome_receita = document.getElementById("nome_receita").value;
-        let modo_de_preparo = document.getElementById("modo_de_preparo").value;
-        let tempo_de_preparo = document.getElementById("tempo_de_preparo").value;
-        let imagem_receita = document.getElementById("imagem_receita").value;
-        
-        fetch("http://localhost/Trabalho02/insert_receita.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-            },
-            body: `nome_receita=${nome_receita}&modo_de_preparo=${modo_de_preparo}
-            &tempo_de_preparo=${tempo_de_preparo}&imagem_receita=${imagem_receita}`,
-        })
-        .then((response) => response.text())
-        .then((res) => (document.getElementById("warning_post_receita").innerHTML = res));
-        
-        document.getElementById('postar_receitas').reset();
-    }
-    else{
-        document.getElementById('postar_receitas').reset();
-    }
-}
-
-function checkSignIn(){
+checkSignIn(){
     clearAllInnerHTML();
 
     let email = document.getElementById("email").value;
@@ -179,7 +132,7 @@ function checkSignIn(){
     
     var resp = "teste";
 
-    fetch("http://localhost/Trabalho02/insert_sign_in.php", {
+    fetch(url+"insert_sign_in.php", {
         method: "POST",
         headers: {
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
@@ -206,7 +159,7 @@ function checkSignIn(){
     document.getElementById('sign_in').reset();
 }
 
-function checkSignUp(){
+checkSignUp(){
     clearAllInnerHTML();
 
     if(checkEmptyNameEmailCPF() && checkCPF() && checkTermsAndConditions() && checkSignUpDate() && checkSignUpPassword()){
@@ -218,7 +171,7 @@ function checkSignUp(){
         var senha = document.getElementById("senha_sign_up").value; 
         var senha_confirmada = document.getElementById("senha_confirmada").value;
         
-        fetch("http://localhost/Trabalho02/insert_sign_up.php", {
+        fetch(url+"insert_sign_up.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
@@ -236,9 +189,9 @@ function checkSignUp(){
     }
 }
 
-function logout(){
+logout(){
     var stuff;
-    fetch("http://localhost/Trabalho02/sair.php", {
+    fetch(url+"sair.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
@@ -250,11 +203,7 @@ function logout(){
     location.reload();
 }
 
-function alertar(aviso){
-    alert(aviso);
-}
-
-function setCookie(cname, cvalue, exdays) {
+setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     let expires = "expires="+ d.toUTCString();
@@ -262,7 +211,7 @@ function setCookie(cname, cvalue, exdays) {
   }
 
 // handles the click event for link 1, sends the query
-function getOutputInsertInDataBase() {
+getOutputInsertInDataBase() {
     getRequest(
         'insert_sign_up.php', // URL for the PHP file
          drawOutput,  // handle successful request
@@ -271,17 +220,17 @@ function getOutputInsertInDataBase() {
     return false;
   }  
   // handles drawing an error message
-  function drawError() {
+drawError() {
       var container = document.getElementById('output');
       container.innerHTML = 'Bummer: there was an error!';
   }
   // handles the response, adds the html
-  function drawOutput(responseText) {
+drawOutput(responseText) {
       var container = document.getElementById('output');
       container.innerHTML = responseText;
   }
   // helper function for cross-browser request object
-  function getRequest(url, success, error) {
+ getRequest(url, success, error) {
       var req = false;
       try{
           // most browsers
@@ -312,3 +261,97 @@ function getOutputInsertInDataBase() {
       req.send(null);
       return req;
 }
+
+exibirReceitas() {
+    var container = $('#receitas-container');
+
+    console.log(Sys.receitas.length);
+    
+    // Itera sobre as receitas e adiciona ao container
+    for (var i = 0; i < Sys.receitas.length; i++) {
+        var receita = Sys.receitas[i];
+        var html = `
+            <div class="receita">
+                <h2>Nome da Receita: ${receita.getNome()}</h2>
+                <p>Preparo: ${receita.getPreparo()}</p>
+                <p>Avaliação: ${receita.getAvaliacao()} estrelas</p>
+                <p>Tempo de preparo: ${receita.getTempo()} minutos</p>
+                <p>Usuário: ${receita.getUsuario()}</p>
+            </div>
+        `;
+        container.append(html);
+    }
+}
+
+setReceitas(){
+    $.ajax({
+        url: "persistencia/receita.php",
+            data:"op=0",
+            type:"POST",
+            cache:false,
+            success: function(r){
+                const o = JSON.parse(r);
+                var key;
+                for(key in o){
+                    if(o[key] != ""){
+                        var b = o[key];
+                        var e = new Receita(b[0],b[1],b[2],b[3],b[4],b[5],b[6]);
+                        Sys.receitas.push(e);
+                    }
+                }
+                Sys.exibirReceitas();
+            }
+    })
+}
+
+}
+
+Sys = new Sistema();
+
+$(document).ready(function() {
+    $("ListaReceitas").click(function(){ setReceitas();});
+
+    Sys.setReceitas();
+});
+
+
+/* function setReceitas(){ 
+    fetch("persistencia/receita.php", {
+        method: "POST",
+        body: "op=0",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        }
+    }).then(response => response.json()).then(data => {
+        for (const key in data) {
+            if (data[key] !== "") {
+                const b = data[key];
+                const e = new Receita(b[0], b[1], b[2], b[3], b[4], b[5], b[6]);
+                receitas.push(e);
+            }
+        }
+        exibirReceitas(receitas);
+    });
+}
+
+function exibirReceitas(receitas) {
+    const container = document.getElementById('receitas-container');
+
+    // Itera sobre as receitas e adiciona ao container
+    receitas.forEach(receita => {
+        const html = `
+            <div class="receita">
+                <h2>Nome da Receita: ${receita.getNome()}</h2>
+                <p>Preparo: ${receita.getPreparo()}</p>
+                <p>Avaliação: ${receita.getAvaliacao()} estrelas</p>
+                <p>Tempo de preparo: ${receita.getTempo()} minutos</p>
+                <p>Usuário: ${receita.getUsuario()}</p>
+            </div>
+        `;
+        container.insertAdjacentHTML('beforeend', html);
+    })
+} */
+
+/* document.getElementById('ListaReceitas').addEventListener("click", function() {
+    setReceitas();
+}); */

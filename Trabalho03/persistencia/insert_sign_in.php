@@ -1,10 +1,8 @@
 <?php
     session_start();
 
-    $conexao = new mysqli("localhost","odaw","odaw","site_receitas");
-    if ($conexao -> connect_errno) {
-        die('Não foi possível conectar: ' . $conexao -> connect_error);
-    }
+    $localhost = conectar();
+
     $_SESSION["login"] = false;
     
     $email = $_POST['email'];
@@ -13,6 +11,7 @@
     $query_id = mysqli_query($conexao, "SELECT * from usuarios where email = '$email' and senha = '$senha'");
     $row = mysqli_fetch_array($query_id);
 
+    
     if($row["ID_Usuario"] == null) {
         echo "<font color='erro'> Email ou senha incorreto(s). <br> </font>";
         mysqli_close($conexao);

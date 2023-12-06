@@ -114,6 +114,20 @@
             }
             /* Por que o '@'? */
         }
+        /* Estilo da textarea: */
+        textarea {
+            padding: 10px;
+            max-width: 100%;
+            line-height: 1.5;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-shadow: 1px 1px 1px #999;
+        }
+        /* Estilo do label (nome das caixas em formulários) */
+        /* label {
+            display: block;
+            margin-bottom: 10px;
+        } */
     </style>
 </head>
 <body>
@@ -181,6 +195,9 @@
     </div>
 
     <article>
+
+        <!-- Botões  -->
+        <!-- Botão Lista de Receitas -->
         <div class="row" style="position: fixed; left: 40%; top: 40%;">
             <div class="bgimg w3-display-container w3-text-white">
                 <div class="w3-display-topleft w3-container w3-xlarge"
@@ -190,22 +207,51 @@
                 </div>
             </div>
         </div>
-
+        <!-- Botão de Postar Receitas -->
         <div class="row" style="position: fixed; left: 41%; top: 50%;">
             <div class="bgimg w3-display-container w3-text-white">
                 <div class="w3-display-topleft w3-container w3-xlarge"
                     style="font-family: 'Courier New', Courier, monospace;">
 
-                    <br>
+                    <?php 
+                        if($_SESSION["login"] == true){
+                            // echo "  <form method=\"post\" action=\"pagina_postar_receitas.php\">
+                            //         <input type=\"submit\" name=\"Postar Receitas\" 
+                            //         class=\"w3-button w3-black\" value=\"Postar Receitas\"></button></p>
+                            //         </form>
+                            // ";
+                            echo "  
+                                <button class=\"w3-button w3-black\" type=\"button\" 
+                                onclick=\"document.getElementById('menu-postar-receitas').style.display='block'\"> 
+                                    Postar Receitas 
+                                </button>
+                            ";
+                        }
+                        else {
+                            echo "
+                                <button class=\"w3-button w3-black\" type=\"button\" onclick=\"alertar('É necessário logar')\">
+                                    Postar Receitas 
+                                </button>
+                            ";
+                        }
+                    ?>
+                    <!-- <script src=\"functions.js\"></script>
+                    <form>
+                    <input type=\"submit\" onclick=\"alertar(\"É nessário estar logado!\")\" name=\"Postar Receitas\" 
+                    class=\"w3-button w3-black\" value=\"Postar Receitas\"></button></p>
+                    </form> -->
+
+                    <!-- <br>
                     <form method="post" action="pagina_postar_receitas.php">
                             <input type="submit" name="Postar Receitas" 
                             class="w3-button w3-black" value="Postar Receitas"></button></p>
-                    </form>
-
-
+                    </form> -->
                 </div>
             </div>
         </div>
+
+        <!-- Menu's pop-up -->
+        <!-- Pop-up lista de receitas -->
 
         <script src="functions.js"></script>
 
@@ -246,6 +292,45 @@
             </div>
         </div>
 
+        <!-- Pop-up para postar receita -->
+        <div id="menu-postar-receitas" class="w3-modal">
+            <div class="w3-modal-content w3-animate-zoom">
+                <div class="w3-container w3-black w3-display-container">
+                    <span onclick="document.getElementById('menu-postar-receitas').style.display='none'"
+                        class="w3-button w3-display-topright w3-large">x</span>
+                    <h1>Postar Receitas</h1>
+                </div>
+                <script src="functions.js"></script>
+                <div class="w3-container" style="text-align: center;">
+                    <form id = "postar_receitas" method="post">
+                        <br>
+                        <text id = "warning_post_receita"> </text>
+                        <label for="nome_receita"> Nome da receita: </label>
+                        <input type="text" id="nome_receita" name="nome_receita">
+                        <br><br>
+                        <label for="modo_de_preparo" style="display: block; margin-bottom: 10px;"> Modo de preparo: </label>
+                        <!-- <input type="text" id="modo_de_preparo" name="modo_de_preparo" height="50"> -->
+                        <!-- <br><br> -->
+                        <textarea id="modo_de_preparo" name="modo_de_preparo" rows="7" cols="50" required> </textarea>
+                        &nbsp;
+                        <br><br>
+                        <label for="tempo_de_preparo"> Tempo de preparo (em minutos): </label>
+                        <input type="number" id="tempo_de_preparo" name="tempo_de_preparo" required>
+                        &nbsp;
+                        <br><br>
+                        <label for="imagem_receita"> Imagem: </label>
+                        <input type="file" id="imagem_receita" name="imagem_receita" accept="image/png, image/jpeg" required>
+                        &nbsp;
+                        <br><br>
+                        <button type="reset"> Limpar </button>
+                        <button type="button" onclick="postReceipe()"> Postar </button>
+                        <br><br>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pop-up de login -->
         <div id="menu-login" class="w3-modal">
             <div class="w3-modal-content w3-animate-zoom">
                 <div class="w3-container w3-black w3-display-container">
@@ -273,6 +358,7 @@
             </div>
         </div>
 
+        <!-- Pop-up de cadastro -->
         <div id="menu-cadastro" class="w3-modal">
             <div class="w3-modal-content w3-animate-zoom">
                 <div class="w3-container w3-black w3-display-container">
@@ -351,10 +437,12 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div>        
     </article>
+
+    <!-- Rodapé -->
     <div class="row">
-        <div class="w3-row w3-padding w3-black"">
+        <div class="w3-row w3-padding w3-black">
             <div class=" w3-col s3">
                 <!-- se colocar #[algum_id] no href abaixo ele leva para a parte da página que contém o item com aquele id -->
             <a href="pagina_sobre_nos.php" class="w3-button w3-block w3-black">SOBRE NÓS</a>
