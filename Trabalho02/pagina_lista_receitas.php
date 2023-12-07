@@ -1,17 +1,13 @@
 <!DOCTYPE HTML>
-<html>  
-<body>
 <style>
-.error {color: #FF0000;}
-</style>
+    .error {color: #FF0000;}
+    </style>
 
 <?php
     session_start();
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-
+<html>
 <head>
     <title> Receitas </title>
     <meta charset="utf-8">
@@ -32,7 +28,9 @@
 
         body {
             font-family: 'Courier New', Courier, monospace;
-            background-image: url('https://www.hashmicro.com/blog/wp-content/uploads/2022/01/Saluran-Distribusi14.png');
+            /* background-image: url('https://www.hashmicro.com/blog/wp-content/uploads/2022/01/Saluran-Distribusi14.png'); */
+            /* background-image: url('https://www.bhmpics.com/downloads/animated-svg-wallpaper/1.live-wave-background.svg'); */
+            background-image: url('https://cdn.svgator.com/images/2022/06/use-svg-as-background-image-particle-strokes.svg');
             background-position: center;
             background-size: cover;
             /* Adicionado para forçar a tag article a ocupar o meio da página inteira,...
@@ -41,6 +39,7 @@
             flex-direction: column;
             min-height: 100vh;
             margin: 0;
+            height: 100%;
         }
         input[type=email],
         select {
@@ -97,7 +96,13 @@
             display: table;
             clear: both;
         }
-        .row {}
+        .row {
+        }
+        
+        #parent{padding:10px;}
+
+        .child {height:350px;margin:10px;}
+
         /* Style the footer */
         .footer {
             background-color: #f1f1f1;
@@ -130,6 +135,7 @@
         } */
     </style>
 </head>
+
 <body>
     <div class="w3-top">
         <div class="w3-row w3-padding w3-black">
@@ -159,18 +165,6 @@
                     ";
                 }
             ?>
-            <!-- <div class="w3-col s3">
-                <a href="pagina-inicial.html" class="w3-button w3-block w3-black"> INÍCIO </a>
-            </div>
-            <div class="w3-col s3">
-                <p> </p>
-            </div>
-            <div class="w3-col s3">
-                <a onclick="document.getElementById('menu-cadastro').style.display='block'"
-                    class="w3-button w3-block w3-black">
-                    CADASTRO
-                </a>
-            </div> -->
             <script src="functions.js"></script>
             <?php 
                 if($_SESSION["login"] == true){
@@ -197,175 +191,89 @@
     <article>
 
         <!-- Posts  -->
+        
+        <div id="parent" style="margin-top: 75px;">
+            <?php   
+                $conexao = new mysqli("localhost","odaw","odaw","site_receitas");
+                if ($conexao -> connect_errno) {
+                    die('Não foi possível conectar: ' . $conexao -> connect_error);
+                }
 
-        <?php 
-            $conexao = new mysqli("localhost","odaw","odaw","site_receitas");
-            if ($conexao -> connect_errno) {
-                die('Não foi possível conectar: ' . $conexao -> connect_error);
-            }
+                $query = "select * from receitas";
+                $result = mysqli_query($conexao, $query);
+                $id_usuario = $_SESSION['ID_Usuario'];
+                
+                $flag = 0;
+                while ($row = mysqli_fetch_array($result)) {
+                    echo "
+                        <div class=\"child\" id=\"" ."receita_". strval($row["ID_Receitas"]) . "\">
+                            <div class=\"sub-div\" style>
+                                <div class=\"bgimg w3-display-container w3-text-black\">
+                                    <div class=\"w3-display-topleft w3-container w3-xlarge\"
+                                        style=\"font-family: 'Courier New', Courier, monospace; margin-right: 225px; 
+                                        margin-left: 500px; width:700px; background: white; outline: 5px solid black;\" >
+                                            <h2> Receita " . $row["nome_receita"] . " (" . strval($row["ID_Receita"]) . ")"  . "</h2>
+                                            <h3> Tempo de preparo: " . $row["tempo_de_preparo"] . " minuto(s) </h3>
+                                            <h5> <b> Modo de preparo: </b> 
+                                            " . $row["modo_de_preparo"] . "
+                                            </h5>
+                                            <h5> <b> Ingredientes: </b> 
+                                            " . $row["ingredientes"] . "
+                                            </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ";
 
-            $query = "select * from receitas";
-            $result = mysqli_query($conexao, $query);
-
-            while ($row = mysqli_fetch_array($result)) {
-                echo "<tr><th>". $row["id"] ."</th>\n<th>". $row["name"] ."</th>\n<th>". $row["breeds"] . 
-                "</th>\n</tr>\n";
-            }
-
-            if($_SESSION["login"] == true){
-                // echo "  <form method=\"post\" action=\"pagina_postar_receitas.php\">
-                //         <input type=\"submit\" name=\"Postar Receitas\" 
-                //         class=\"w3-button w3-black\" value=\"Postar Receitas\"></button></p>
-                //         </form>
-                // ";
-                echo "  
-                    <button class=\"w3-button w3-black\" type=\"button\" 
-                    onclick=\"document.getElementById('menu-postar-receitas').style.display='block'\"> 
-                        Postar Receitas 
-                    </button>
-                ";
-            }
-            else {
-                echo "
-                    <button class=\"w3-button w3-black\" type=\"button\" onclick=\"alertar('É necessário logar')\">
-                        Postar Receitas 
-                    </button>
-                ";
-            }
-        ?>
-
-        <!-- Botão Lista de Receitas -->
-        <div class="row" style="position: fixed; left: 40%; top: 40%;">
-            <div class="bgimg w3-display-container w3-text-white">
-                <div class="w3-display-topleft w3-container w3-xlarge"
-                    style="font-family: 'Courier New', Courier, monospace;">
-                    <p><button onclick="document.getElementById('Lista de Receitas').style.display='block'"
-                            class="w3-button w3-black">Lista de Receitas</button></p>
-                </div>
-            </div>
-        </div>
-        <!-- Botão de Postar Receitas -->
-        <div class="row" style="position: fixed; left: 41%; top: 50%;">
-            <div class="bgimg w3-display-container w3-text-white">
-                <div class="w3-display-topleft w3-container w3-xlarge"
-                    style="font-family: 'Courier New', Courier, monospace;">
-
-                    <?php 
-                        if($_SESSION["login"] == true){
-                            // echo "  <form method=\"post\" action=\"pagina_postar_receitas.php\">
-                            //         <input type=\"submit\" name=\"Postar Receitas\" 
-                            //         class=\"w3-button w3-black\" value=\"Postar Receitas\"></button></p>
-                            //         </form>
-                            // ";
-                            echo "  
-                                <button class=\"w3-button w3-black\" type=\"button\" 
-                                onclick=\"document.getElementById('menu-postar-receitas').style.display='block'\"> 
-                                    Postar Receitas 
+                    if($id_usuario == $row["ID_Usuario"] && $_SESSION["login"] == true){
+                        echo "
+                            <div class=\"child\" style=\"margin-top: -100px; height: 150px; margin-right: 225px; 
+                            margin-left: 510px;\">
+                                <script src=\"functions.js\"></script>
+                                <button class=\"w3-button w3-black\" 
+                                    type=\"button\" onclick=\"deleteRecipe(".$row["ID_Receita"].")\"
+                                    style=\" \">
+                                        Remover receita
                                 </button>
-                            ";
-                        }
-                        else {
-                            echo "
-                                <button class=\"w3-button w3-black\" type=\"button\" onclick=\"alertar('É necessário logar')\">
-                                    Postar Receitas 
-                                </button>
-                            ";
-                        }
-                    ?>
-                    <!-- <script src=\"functions.js\"></script>
-                    <form>
-                    <input type=\"submit\" onclick=\"alertar(\"É nessário estar logado!\")\" name=\"Postar Receitas\" 
-                    class=\"w3-button w3-black\" value=\"Postar Receitas\"></button></p>
-                    </form> -->
+                            </div>
+                        ";
+                    }
+                    // else if($_SESSION["login"] == true){
+                    //     echo "  
+                    //         <div class=\"child\" style=\"margin-top: -200px; height: 150px; justify-content: center; display: flex;\">
+                    //             <form class=\"w3-button w3-black\" id = \"sign_in\" method=\"post\" 
+                    //             style=\" margin-right: 225px; margin-left: 225px;\"
+                    //             oninput=\"result.value = avaliacao.value\">
+                    //                 <input type=\"range\" id=\"avaliacao\" min=\"0\" max=\"5\" step=\"1\" value=\"0\"> 
+                    //                 <br/>
+                    //                 <p >
+                    //                 Nota: <output name=\"result\" for=\"avaliacao\">0</output>
+                    //                 <p/>
+                    //             </form>
+                    //         </div>
+                    //     ";
+                    // }
+                    $flag = 1;
+                }
 
-                    <!-- <br>
-                    <form method="post" action="pagina_postar_receitas.php">
-                            <input type="submit" name="Postar Receitas" 
-                            class="w3-button w3-black" value="Postar Receitas"></button></p>
-                    </form> -->
-                </div>
-            </div>
+                if($flag == 0){
+                    echo "
+                        <div style=\"position: auto; justify-content: center; display: flex;\">
+                            <div class=\"bgimg w3-display-container w3-text-black\" 
+                            style=\"font-family: 'Courier New', Courier, monospace; font-size: 25px; 
+                            margin-top: 225px; outline: 5px solid black; text-align: center; width: fit-content; background: white;\" >
+                                <p> &nbsp; Nenhuma receita postada até o momento :( &nbsp; </p>
+                            </div>
+                        </div>
+                        \n
+                    ";
+                }
+            ?>
         </div>
 
         <!-- Menu's pop-up -->
         <!-- Pop-up lista de receitas -->
-
-        <script src="functions.js"></script>
-
-        <div id="Lista de Receitas" class="w3-modal">
-            <div class="w3-modal-content w3-animate-zoom">
-                <div class="w3-container w3-black w3-display-container">
-                    <span onclick="document.getElementById('Lista de Receitas').style.display='none'"
-                        class="w3-button w3-display-topright w3-large">x</span>
-                    <h1>Lista de Receitas</h1>
-                </div>
-                <div class="w3-container">
-                    <h5> <a href="caçarola-de-frango.html" target="_blank" rel="external" hreflang="pt"
-                            type="text/html"> Caçarola de Frango </a> </h5>
-                    <h5> Bife Chili (Apimentado) </h5>
-                    <h5> Molho de Queijo </h5>
-                    <h5> Escondidinho de Camarão </h5>
-                    <h5> Macarrão Alho e Oleo </h5>
-                </div>
-                <!-- <div class="w3-container w3-black">
-                    <h1>Main Courses</h1>
-                </div>
-                <div class="w3-container">
-                    <h5>Grilled Fish and Potatoes <b>$8.50</b></h5>
-                    <h5>Italian Pizza <b>$5.50</b></h5>
-                    <h5>Veggie Pasta <b>$4.00</b></h5>
-                    <h5>Chicken and Potatoes <b>$6.50</b></h5>
-                    <h5>Deluxe Burger <b>$5.00</b></h5>
-                </div>
-                <div class="w3-container w3-black">
-                    <h1>Desserts</h1>
-                </div>
-                <div class="w3-container">
-                    <h5>Fruit Salad <b>$2.50</b></h5>
-                    <h5>Ice cream <b>$2.00</b></h5>
-                    <h5>Chocolate Cake <b>$4.00</b></h5>
-                    <h5>Cheese <b>$5.50</b></h5>
-                </div> -->
-            </div>
-        </div>
-
-        <!-- Pop-up para postar receita -->
-        <div id="menu-postar-receitas" class="w3-modal">
-            <div class="w3-modal-content w3-animate-zoom">
-                <div class="w3-container w3-black w3-display-container">
-                    <span onclick="document.getElementById('menu-postar-receitas').style.display='none'"
-                        class="w3-button w3-display-topright w3-large">x</span>
-                    <h1>Postar Receitas</h1>
-                </div>
-                <script src="functions.js"></script>
-                <div class="w3-container" style="text-align: center;">
-                    <form id = "postar_receitas" method="post">
-                        <br>
-                        <text id = "warning_post_receita"> </text>
-                        <label for="nome_receita"> Nome da receita: </label>
-                        <input type="text" id="nome_receita" name="nome_receita">
-                        <br><br>
-                        <label for="modo_de_preparo" style="display: block; margin-bottom: 10px;"> Modo de preparo: </label>
-                        <!-- <input type="text" id="modo_de_preparo" name="modo_de_preparo" height="50"> -->
-                        <!-- <br><br> -->
-                        <textarea id="modo_de_preparo" name="modo_de_preparo" rows="7" cols="50" required> </textarea>
-                        &nbsp;
-                        <br><br>
-                        <label for="tempo_de_preparo"> Tempo de preparo (em minutos): </label>
-                        <input type="number" id="tempo_de_preparo" name="tempo_de_preparo" required>
-                        &nbsp;
-                        <br><br>
-                        <label for="imagem_receita"> Imagem: </label>
-                        <input type="file" id="imagem_receita" name="imagem_receita" accept="image/png, image/jpeg" required>
-                        &nbsp;
-                        <br><br>
-                        <button type="reset"> Limpar </button>
-                        <button type="button" onclick="postReceipe()"> Postar </button>
-                        <br><br>
-                    </form>
-                </div>
-            </div>
-        </div>
 
         <!-- Pop-up de login -->
         <div id="menu-login" class="w3-modal">
@@ -443,34 +351,7 @@
                         <br><br>
                         <button type="reset"> Limpar formulário </button>
                         <button type="button" onclick="checkSignUp()"> Finalizar </button>
-                        <!-- <button type="submit"> Finalizar </button> -->
-  
-                        <!-- <button id="submit_sign_up" type="submit"> Finalizar </button>
-
-                        <div id="result"></div>
-  
-                        <script>
-                            let btn = document.getElementById("submit_sign_up");
-                            let x = 5;
-                            let y = 3;
-
-                            btn.addEventListener("click", function(){
-                            fetch("http://localhost/Trabalho02/add_teste_func.php", {
-                                method: "POST",
-                                headers: {
-                                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-                                },
-                                body: `x=${x}&y=${y}`,
-                            })
-                            .then((response) => response.text())
-                            .then((res) => (document.getElementById("result").innerHTML = res));
-                            })
-
-                            console.log(document.getElementById("result").innerHTML);
-                        </script> -->
-
                         <br><br>
-
                     </form>
                 </div>
             </div>
@@ -478,25 +359,23 @@
     </article>
 
     <!-- Rodapé -->
-    <div class="row">
+    <div class="row" style="margin-top: fit-content;">
         <div class="w3-row w3-padding w3-black">
             <div class=" w3-col s3">
-                <!-- se colocar #[algum_id] no href abaixo ele leva para a parte da página que contém o item com aquele id -->
-            <a href="pagina_sobre_nos.php" class="w3-button w3-block w3-black">SOBRE NÓS</a>
-        </div>
-        <div class="w3-col s3">
-            <p> </p>
-        </div>
-        <div class="w3-col s3">
-            <p> </p>
-        </div>
-        <div class="w3-col s3">
-            <a href="pagina_politica_copyright.php" class="w3-button w3-block w3-black">POLÍTICA DE COPYRIGHT </a>
+                    <!-- se colocar #[algum_id] no href abaixo ele leva para a parte da página que contém o item com aquele id -->
+                <a href="pagina_sobre_nos.php" class="w3-button w3-block w3-black">SOBRE NÓS</a>
+            </div>
+            <div class="w3-col s3">
+                <p> </p>
+            </div>
+            <div class="w3-col s3">
+                <p> </p>
+            </div>
+            <div class="w3-col s3">
+                <a href="pagina_politica_copyright.php" class="w3-button w3-block w3-black">POLÍTICA DE COPYRIGHT </a>
+            </div>
         </div>
     </div>
-    </div>
-</body>
-</html>
 
 </body>
 </html>

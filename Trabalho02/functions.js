@@ -126,8 +126,9 @@ function checkEmptyNomeModoTempoImagem(){
     let modo_de_preparo = document.getElementById("modo_de_preparo").value;
     let tempo_de_preparo = document.getElementById("tempo_de_preparo").value;
     let imagem_receita = document.getElementById("imagem_receita").value;
+    let ingredientes = document.getElementById("ingredientes").value;
 
-    if(nome_receita === "" || modo_de_preparo === "" || tempo_de_preparo < 0){
+    if(nome_receita === "" || modo_de_preparo === "" || ingredientes === "" || tempo_de_preparo == null || tempo_de_preparo <= 0){
         document.getElementsByName("warning_post_receita") = "<font color='red'> Campos vazios! <br> </font>";
         return false;
     }
@@ -139,12 +140,11 @@ function clearAllInnerHTML(){
     document.getElementById("warning_cpf").innerHTML = "";
     document.getElementById("warning_termos_e_condicoes").innerHTML = "";
     document.getElementById("warning_senha").innerHTML = "";
-    document.getElementById("warning_post_receita").innerHTML = "";
 }
 
-function postReceipe(){
+function postRecipe(){
     document.getElementById("warning_post_receita").innerHTML = "";
-    // clearAllInnerHTML();
+    clearAllInnerHTML();
 
     if(checkEmptyNomeModoTempoImagem()){
 
@@ -152,14 +152,17 @@ function postReceipe(){
         let modo_de_preparo = document.getElementById("modo_de_preparo").value;
         let tempo_de_preparo = document.getElementById("tempo_de_preparo").value;
         let imagem_receita = document.getElementById("imagem_receita").value;
+        let ingredientes = document.getElementById("ingredientes").value;
         
-        fetch("http://localhost/Trabalho02/insert_receita.php", {
+        console.log(`nome_receita=${nome_receita}&modo_de_preparo=${modo_de_preparo}&tempo_de_preparo=${tempo_de_preparo}&imagem_receita=${"semimagem"}
+        &ingredientes=${ingredientes}`);
+
+        fetch("http://localhost/Trabalho02/Database/insert_receita.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
             },
-            body: `nome_receita=${nome_receita}&modo_de_preparo=${modo_de_preparo}
-            &tempo_de_preparo=${tempo_de_preparo}&imagem_receita=${imagem_receita}`,
+            body: `nome_receita=${nome_receita}&modo_de_preparo=${modo_de_preparo}&tempo_de_preparo=${tempo_de_preparo}&ingredientes=${ingredientes}`,
         })
         .then((response) => response.text())
         .then((res) => (document.getElementById("warning_post_receita").innerHTML = res));
@@ -171,6 +174,19 @@ function postReceipe(){
     }
 }
 
+function deleteRecipe(id){
+    fetch("http://localhost/Trabalho02/Database/delete_receita.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+            },
+            body: `ID_Receita=${id}`,
+        })
+        .then((response) => response.text())
+        .then((res) => (console.log(res)));
+    location.reload();
+}
+
 function checkSignIn(){
     clearAllInnerHTML();
 
@@ -179,7 +195,7 @@ function checkSignIn(){
     
     var resp = "teste";
 
-    fetch("http://localhost/Trabalho02/insert_sign_in.php", {
+    fetch("http://localhost/Trabalho02/Database/insert_sign_in.php", {
         method: "POST",
         headers: {
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
@@ -218,7 +234,7 @@ function checkSignUp(){
         var senha = document.getElementById("senha_sign_up").value; 
         var senha_confirmada = document.getElementById("senha_confirmada").value;
         
-        fetch("http://localhost/Trabalho02/insert_sign_up.php", {
+        fetch("http://localhost/Trabalho02/Database/insert_sign_up.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
@@ -264,7 +280,7 @@ function setCookie(cname, cvalue, exdays) {
 // handles the click event for link 1, sends the query
 function getOutputInsertInDataBase() {
     getRequest(
-        'insert_sign_up.php', // URL for the PHP file
+        'Database/insert_sign_up.php', // URL for the PHP file
          drawOutput,  // handle successful request
          drawError    // handle error
     );

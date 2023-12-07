@@ -197,29 +197,30 @@
     <article>
 
         <!-- Botões  -->
+
         <!-- Botão Lista de Receitas -->
-        <div class="row" style="position: fixed; left: 40%; top: 40%;">
+        <div class="row" style="position: fixed; left: 40%; top: 38%;">
             <div class="bgimg w3-display-container w3-text-white">
                 <div class="w3-display-topleft w3-container w3-xlarge"
                     style="font-family: 'Courier New', Courier, monospace;">
-                    <p><button onclick="document.getElementById('Lista de Receitas').style.display='block'"
-                            class="w3-button w3-black">Lista de Receitas</button></p>
+                    <!-- <p><button onclick="document.getElementById('Lista de Receitas').style.display='block'"
+                        class="w3-button w3-black">Lista de Receitas</button></p> -->
+                    <p><a class="w3-button w3-black" href="pagina_lista_receitas.php"
+                        class="w3-button w3-black">Lista de Receitas</a>
+                    </p>
+                    
                 </div>
             </div>
         </div>
+
         <!-- Botão de Postar Receitas -->
         <div class="row" style="position: fixed; left: 41%; top: 50%;">
             <div class="bgimg w3-display-container w3-text-white">
+                <br>
                 <div class="w3-display-topleft w3-container w3-xlarge"
                     style="font-family: 'Courier New', Courier, monospace;">
-
                     <?php 
                         if($_SESSION["login"] == true){
-                            // echo "  <form method=\"post\" action=\"pagina_postar_receitas.php\">
-                            //         <input type=\"submit\" name=\"Postar Receitas\" 
-                            //         class=\"w3-button w3-black\" value=\"Postar Receitas\"></button></p>
-                            //         </form>
-                            // ";
                             echo "  
                                 <button class=\"w3-button w3-black\" type=\"button\" 
                                 onclick=\"document.getElementById('menu-postar-receitas').style.display='block'\"> 
@@ -235,17 +236,6 @@
                             ";
                         }
                     ?>
-                    <!-- <script src=\"functions.js\"></script>
-                    <form>
-                    <input type=\"submit\" onclick=\"alertar(\"É nessário estar logado!\")\" name=\"Postar Receitas\" 
-                    class=\"w3-button w3-black\" value=\"Postar Receitas\"></button></p>
-                    </form> -->
-
-                    <!-- <br>
-                    <form method="post" action="pagina_postar_receitas.php">
-                            <input type="submit" name="Postar Receitas" 
-                            class="w3-button w3-black" value="Postar Receitas"></button></p>
-                    </form> -->
                 </div>
             </div>
         </div>
@@ -309,9 +299,11 @@
                         <input type="text" id="nome_receita" name="nome_receita">
                         <br><br>
                         <label for="modo_de_preparo" style="display: block; margin-bottom: 10px;"> Modo de preparo: </label>
-                        <!-- <input type="text" id="modo_de_preparo" name="modo_de_preparo" height="50"> -->
-                        <!-- <br><br> -->
                         <textarea id="modo_de_preparo" name="modo_de_preparo" rows="7" cols="50" required> </textarea>
+                        &nbsp;
+                        <br><br>
+                        <label for="ingredientes" style="display: block; margin-bottom: 10px;"> Ingredientes: </label>
+                        <textarea id="ingredientes" name="ingredientes" rows="4" cols="50" required> </textarea>
                         &nbsp;
                         <br><br>
                         <label for="tempo_de_preparo"> Tempo de preparo (em minutos): </label>
@@ -323,7 +315,7 @@
                         &nbsp;
                         <br><br>
                         <button type="reset"> Limpar </button>
-                        <button type="button" onclick="postReceipe()"> Postar </button>
+                        <button type="button" onclick="postRecipe()"> Postar </button>
                         <br><br>
                     </form>
                 </div>

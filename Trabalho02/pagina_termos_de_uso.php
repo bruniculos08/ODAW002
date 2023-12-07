@@ -176,7 +176,6 @@
                 <div class="w3-display-topleft w3-container w3-xlarge"
                     style="font-family: 'Courier New', Courier, monospace; margin-right: 225px; margin-left: 225px; margin-top: 225px;" >
                     
-
                     <h2> Termos de uso </h2>
                     <!-- <h3> Copyright (c) GitFood </h3> -->
                     <h5> <b> Apenas um texto sobre o Batman (Fonte: Wikipedia): </b> 
